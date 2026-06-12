@@ -87,9 +87,7 @@ python app.py
 
 Test:
 ```bash
-curl http://localhost:8000/ask -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"question": "Hello"}'
+curl -X POST "http://localhost:8000/ask?question=hello"
 ```
 
 **Quan sát:** Nó chạy! Nhưng có production-ready không?
