@@ -22,6 +22,7 @@ import json
 from datetime import datetime, timezone
 from collections import defaultdict, deque
 from contextlib import asynccontextmanager
+from typing import Any
 
 from fastapi import FastAPI, HTTPException, Security, Depends, Request, Response
 from fastapi.security.api_key import APIKeyHeader
@@ -175,6 +176,38 @@ class AskResponse(BaseModel):
     intent: str | None = None
     sources: list[dict] | None = None
 
+class ChatMessage(BaseModel):
+    role: str = Field(..., description="Role of message author (user or assistant)")
+    content: str = Field(..., description="Text content of the message")
+
+class ChatRequest(BaseModel):
+    message: str = Field(..., min_length=1, description="User question")
+    history: list[ChatMessage] = Field(default_factory=list, description="Conversation history")
+    top_k: int = Field(default=5, ge=1, le=10, description="Number of context chunks to retrieve")
+
+class SourceChunk(BaseModel):
+    content: str
+    score: float | None = None
+    source: str | None = None
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+class AgentTraceItem(BaseModel):
+    name: str
+    role: str
+    status: str
+    detail: str
+
+class ChatResponse(BaseModel):
+    answer: str
+    retrieval_source: str
+    sources: list[SourceChunk]
+    intent: str
+    citations_ok: bool
+    graph_runtime: str
+    trace: list[AgentTraceItem]
+    a2a_messages: list[dict[str, Any]]
+    mcp_tools: list[dict[str, Any]]
+
 # ─────────────────────────────────────────────────────────
 # Endpoints
 # ─────────────────────────────────────────────────────────
@@ -238,6 +271,67 @@ async def ask_agent(
             for src in agent_res.get("sources", [])
         ]
     )
+
+
+def _sanitize_sources(sources: list[dict], max_chars: int = 700) -> list[SourceChunk]:
+    sanitized = []
+    for item in sources:
+        content = " ".join(str(item.get("content", "")).split())
+        if len(content) > max_chars:
+            content = content[:max_chars].rstrip() + "..."
+        score = item.get("score")
+        sanitized.append(
+            SourceChunk(
+                content=content,
+                score=float(score) if score is not None else None,
+                source=item.get("source"),
+                metadata=item.get("metadata", {}) or {},
+            )
+        )
+    return sanitized
+
+
+@app.post("/chat", response_model=ChatResponse, tags=["Chatbot"])
+async def chat_endpoint(body: ChatRequest, request: Request):
+    """
+    Endpoint for Web UI compatibility (does not require API key for public chat).
+    """
+    # Rate limit (use IP address for public endpoint)
+    client_ip = str(request.client.host) if request.client else "unknown"
+    check_rate_limit(client_ip[:8])
+
+    # Budget check
+    input_tokens = len(body.message.split()) * 2
+    check_and_record_cost(input_tokens, 0)
+
+    logger.info(json.dumps({
+        "event": "chat_call",
+        "q_len": len(body.message),
+        "client": client_ip,
+    }))
+
+    try:
+        history_list = [{"role": msg.role, "content": msg.content} for msg in body.history]
+        result = run_multi_agent_chat(body.message, history=history_list, top_k=body.top_k)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
+
+    answer = result.get("answer", "")
+    output_tokens = len(answer.split()) * 2
+    check_and_record_cost(0, output_tokens)
+
+    return ChatResponse(
+        answer=answer,
+        retrieval_source=result.get("retrieval_source", "none"),
+        sources=_sanitize_sources(result.get("sources", [])),
+        intent=result.get("intent", "general"),
+        citations_ok=bool(result.get("citations_ok", False)),
+        graph_runtime=result.get("graph_runtime", "unknown"),
+        trace=result.get("trace", []),
+        a2a_messages=result.get("a2a_messages", []),
+        mcp_tools=result.get("mcp_tools", []),
+    )
+
 
 
 @app.get("/health", tags=["Operations"])
