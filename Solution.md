@@ -1,5 +1,10 @@
 # Day 12 Lab - Mission Answers
 
+> [!IMPORTANT]
+> **API Production URL:** [https://production-agent-day12-production.up.railway.app](https://production-agent-day12-production.up.railway.app)
+> **API POST Endpoint:** `https://production-agent-day12-production.up.railway.app/ask`
+> **API Health Check:** `https://production-agent-day12-production.up.railway.app/health`
+
 ## Part 1: Localhost vs Production
 
 ### Exercise 1.1: Anti-patterns found
