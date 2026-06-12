@@ -31,8 +31,8 @@ import uvicorn
 
 from app.config import settings
 
-# Mock LLM (thay bằng OpenAI/Anthropic khi có API key)
-from utils.mock_llm import ask as llm_ask
+# Multi-agent RAG pipeline
+from app.multi_agent import run_multi_agent_chat
 
 # ─────────────────────────────────────────────────────────
 # Logging — JSON structured
@@ -172,6 +172,8 @@ class AskResponse(BaseModel):
     answer: str
     model: str
     timestamp: str
+    intent: str | None = None
+    sources: list[dict] | None = None
 
 # ─────────────────────────────────────────────────────────
 # Endpoints
@@ -215,7 +217,8 @@ async def ask_agent(
         "client": str(request.client.host) if request.client else "unknown",
     }))
 
-    answer = llm_ask(body.question)
+    agent_res = run_multi_agent_chat(body.question)
+    answer = agent_res.get("answer", "")
 
     output_tokens = len(answer.split()) * 2
     check_and_record_cost(0, output_tokens)
@@ -223,8 +226,17 @@ async def ask_agent(
     return AskResponse(
         question=body.question,
         answer=answer,
-        model=settings.llm_model,
+        model=agent_res.get("graph_runtime", settings.llm_model),
         timestamp=datetime.now(timezone.utc).isoformat(),
+        intent=agent_res.get("intent"),
+        sources=[
+            {
+                "content": src.get("content", ""),
+                "score": src.get("score", 0.0),
+                "metadata": src.get("metadata", {})
+            }
+            for src in agent_res.get("sources", [])
+        ]
     )
 
 

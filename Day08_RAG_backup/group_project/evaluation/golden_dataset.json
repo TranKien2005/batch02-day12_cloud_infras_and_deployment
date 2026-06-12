@@ -1,0 +1,122 @@
+[
+  {
+    "id": "legal_01",
+    "category": "legal",
+    "question": "Ma túy là gì theo Luật Phòng chống ma túy 2021?",
+    "expected_answer": "Ma túy là chất gây nghiện, chất hướng thần được quy định trong danh mục chất ma túy do Chính phủ ban hành.",
+    "expected_context": ["Luật-73-2021-QH14", "chất ma túy", "chất gây nghiện", "chất hướng thần"],
+    "expected_keywords": ["chất ma túy", "chất gây nghiện", "chất hướng thần", "Luật"]
+  },
+  {
+    "id": "legal_02",
+    "category": "legal",
+    "question": "Tệ nạn ma túy được hiểu như thế nào?",
+    "expected_answer": "Tệ nạn ma túy là việc sử dụng trái phép chất ma túy, nghiện ma túy và các hành vi vi phạm pháp luật về ma túy chưa đến mức hoặc không bị truy cứu trách nhiệm hình sự.",
+    "expected_context": ["Luật-73-2021-QH14", "Tệ nạn ma túy", "sử dụng trái phép", "nghiện ma túy"],
+    "expected_keywords": ["tệ nạn ma túy", "sử dụng trái phép", "nghiện ma túy", "vi phạm pháp luật"]
+  },
+  {
+    "id": "legal_03",
+    "category": "legal",
+    "question": "Kiểm soát các hoạt động hợp pháp liên quan đến ma túy là gì?",
+    "expected_answer": "Đó là việc cho phép, theo dõi, kiểm tra, giám sát các hoạt động hợp pháp liên quan đến ma túy nhằm phòng ngừa và ngăn chặn lợi dụng để vi phạm pháp luật.",
+    "expected_context": ["Luật-73-2021-QH14", "Kiểm soát", "hoạt động hợp pháp", "giám sát"],
+    "expected_keywords": ["kiểm soát", "hoạt động hợp pháp", "theo dõi", "giám sát"]
+  },
+  {
+    "id": "legal_04",
+    "category": "legal",
+    "question": "Người nghiện ma túy có thể cai nghiện theo những hình thức nào?",
+    "expected_answer": "Các hình thức gồm cai nghiện tự nguyện tại gia đình, cộng đồng, cơ sở cai nghiện và cai nghiện bắt buộc tại cơ sở cai nghiện theo quy định pháp luật.",
+    "expected_context": ["Luật-73-2021-QH14", "cai nghiện", "tự nguyện", "bắt buộc"],
+    "expected_keywords": ["cai nghiện", "tự nguyện", "bắt buộc", "cơ sở cai nghiện"]
+  },
+  {
+    "id": "legal_05",
+    "category": "legal",
+    "question": "Nghị định 105/2021/NĐ-CP hướng dẫn nội dung gì?",
+    "expected_answer": "Nghị định 105/2021/NĐ-CP quy định chi tiết và hướng dẫn thi hành một số điều của Luật Phòng, chống ma túy.",
+    "expected_context": ["Nghị-định-105-2021-NĐ-CP", "hướng dẫn", "Luật Phòng", "chống ma túy"],
+    "expected_keywords": ["Nghị định 105", "hướng dẫn", "Luật Phòng", "chống ma túy"]
+  },
+  {
+    "id": "legal_06",
+    "category": "legal",
+    "question": "Bộ luật Hình sự quy định xử lý hành vi liên quan đến ma túy ở nhóm tội nào?",
+    "expected_answer": "Bộ luật Hình sự có nhóm các tội phạm về ma túy, bao gồm các hành vi như tàng trữ, vận chuyển, mua bán hoặc chiếm đoạt trái phép chất ma túy.",
+    "expected_context": ["Bộ-luật-100-2015-QH13", "tội phạm về ma túy", "tàng trữ", "vận chuyển", "mua bán"],
+    "expected_keywords": ["tội phạm về ma túy", "tàng trữ", "vận chuyển", "mua bán"]
+  },
+  {
+    "id": "legal_07",
+    "category": "legal",
+    "question": "Hành vi tàng trữ trái phép chất ma túy liên quan đến điều luật nào trong Bộ luật Hình sự?",
+    "expected_answer": "Hành vi tàng trữ trái phép chất ma túy liên quan đến Điều 249 Bộ luật Hình sự.",
+    "expected_context": ["Bộ-luật-100-2015-QH13", "Điều 249", "tàng trữ trái phép", "chất ma túy"],
+    "expected_keywords": ["Điều 249", "tàng trữ trái phép", "chất ma túy", "Bộ luật Hình sự"]
+  },
+  {
+    "id": "legal_08",
+    "category": "legal",
+    "question": "Hoạt động phòng chống ma túy cần kiểm soát những loại chất nào?",
+    "expected_answer": "Hoạt động phòng chống ma túy cần kiểm soát chất ma túy, tiền chất, thuốc gây nghiện, thuốc hướng thần và các chất liên quan theo quy định pháp luật.",
+    "expected_context": ["Luật-73-2021-QH14", "tiền chất", "thuốc gây nghiện", "thuốc hướng thần"],
+    "expected_keywords": ["tiền chất", "thuốc gây nghiện", "thuốc hướng thần", "chất ma túy"]
+  },
+  {
+    "id": "news_01",
+    "category": "news",
+    "question": "Các bài báo trong dữ liệu nói về chủ đề nghệ sĩ và ma túy theo hướng nào?",
+    "expected_answer": "Các bài báo tập trung vào nghi án, trách nhiệm xã hội, danh tiếng nghệ sĩ và các sự việc liên quan đến ma túy trong showbiz.",
+    "expected_context": ["nghệ sĩ", "ma túy", "danh tiếng", "trách nhiệm xã hội"],
+    "expected_keywords": ["nghệ sĩ", "ma túy", "danh tiếng", "trách nhiệm xã hội"]
+  },
+  {
+    "id": "news_02",
+    "category": "news",
+    "question": "Bài viết về danh tiếng nghệ sĩ nhấn mạnh vấn đề xã hội nào?",
+    "expected_answer": "Bài viết nhấn mạnh trách nhiệm xã hội của nghệ sĩ và tác động của nghi án ma túy đến danh tiếng, công chúng và người hâm mộ.",
+    "expected_context": ["Danh tiếng nghệ sĩ", "trách nhiệm xã hội", "ma túy"],
+    "expected_keywords": ["danh tiếng", "nghệ sĩ", "trách nhiệm xã hội", "ma túy"]
+  },
+  {
+    "id": "news_03",
+    "category": "news",
+    "question": "Các bài báo có đề cập đến việc nghệ sĩ bị bắt hoặc tạm giam liên quan đến ma túy không?",
+    "expected_answer": "Có, dữ liệu có bài báo về ca sĩ, người mẫu hoặc nghệ sĩ bị bắt, tạm giam hoặc vướng nghi án liên quan đến ma túy.",
+    "expected_context": ["bắt", "tạm giam", "ca sĩ", "người mẫu", "ma túy"],
+    "expected_keywords": ["bắt", "tạm giam", "ca sĩ", "người mẫu", "ma túy"]
+  },
+  {
+    "id": "news_04",
+    "category": "news",
+    "question": "Dữ liệu tin tức có bài viết nào nói về giá đắt phải trả của nghệ sĩ vướng nghi án ma túy?",
+    "expected_answer": "Có, một bài viết đề cập đến cái giá về danh tiếng và sự nghiệp khi nghệ sĩ vướng nghi án ma túy.",
+    "expected_context": ["giá đắt", "nghệ sĩ", "nghi án ma túy", "danh tiếng"],
+    "expected_keywords": ["giá đắt", "nghệ sĩ", "nghi án", "ma túy"]
+  },
+  {
+    "id": "news_05",
+    "category": "news",
+    "question": "Bài báo về danh sách sao Việt dính nghi án dùng ma túy đá thuộc nhóm dữ liệu nào?",
+    "expected_answer": "Đó là nhóm dữ liệu tin tức, phản ánh các bài báo về nghệ sĩ hoặc sao Việt liên quan đến nghi án sử dụng ma túy đá.",
+    "expected_context": ["sao Việt", "nghi án", "ma túy đá", "news"],
+    "expected_keywords": ["sao Việt", "nghi án", "ma túy đá", "tin tức"]
+  },
+  {
+    "id": "mixed_01",
+    "category": "mixed",
+    "question": "Nếu hỏi về nghệ sĩ sử dụng ma túy, hệ thống nên ưu tiên nguồn luật hay nguồn tin tức?",
+    "expected_answer": "Hệ thống nên dùng nguồn tin tức để mô tả sự việc, nhưng khi giải thích trách nhiệm pháp lý thì cần bổ sung nguồn luật liên quan.",
+    "expected_context": ["nghệ sĩ", "ma túy", "tin tức", "pháp luật"],
+    "expected_keywords": ["nghệ sĩ", "tin tức", "pháp luật", "ma túy"]
+  },
+  {
+    "id": "mixed_02",
+    "category": "mixed",
+    "question": "Vì sao câu trả lời RAG về ma túy cần citation?",
+    "expected_answer": "Vì chủ đề ma túy liên quan đến pháp luật và tin tức nhạy cảm, citation giúp kiểm chứng câu trả lời dựa trên văn bản luật hoặc bài báo cụ thể.",
+    "expected_context": ["citation", "nguồn", "pháp luật", "bài báo", "ma túy"],
+    "expected_keywords": ["citation", "nguồn", "pháp luật", "bài báo"]
+  }
+]
